@@ -120,3 +120,57 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Responsive Design Utilities */
+@layer utilities {
+  .responsive-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4;
+  }
+  
+  .responsive-text {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+  
+  .responsive-padding {
+    @apply p-4 sm:p-6 md:p-8;
+  }
+  
+  .responsive-margin {
+    @apply m-4 sm:m-6 md:m-8;
+  }
+}
+
+/* Cross-browser compatibility fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS specific fixes */
+  .ios-fix {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@supports (-moz-appearance: none) {
+  /* Firefox specific fixes */
+  .firefox-fix {
+    scrollbar-width: thin;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
