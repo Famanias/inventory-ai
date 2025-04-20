@@ -16,6 +16,7 @@ import AddProductForm from '@/features/crud/AddProductForm';
 import EditProductForm from '@/features/crud/EditProductForm';
 import Product from '@/features/products/domains/Product';
 import InsightsTabs from '@/features/insights/InsightsTabs';
+import { Clipboard, AlertTriangle, ShoppingCart, DollarSign } from "lucide-react"
 
 interface ApiProduct {
   id: number;
@@ -187,8 +188,8 @@ export default function Page() {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
   return (
-    <div className="flex flex-col gap-6 py-6 px-12">
-      <div className="flex justify-between items-center">
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
           Inventory Dashboard
         </h3>
@@ -196,17 +197,40 @@ export default function Page() {
           Logout
         </Button>
       </div>
-      <div className="grid grid-cols-4 gap-6">
-        <AnalyticsCard name="Total Items" value={totalItems.toString()} description="Across all categories" />
-        <AnalyticsCard name="Low Stock" value={lowStock.toString()} description="Items that need reordering" />
-        <AnalyticsCard name="Out of Stock" value={outOfStock.toString()} description="Items currently unavailable" />
-        <AnalyticsCard name="Total Value" value={`$${totalValue}`} description="Current inventory value" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <AnalyticsCard 
+            name="Total Items" 
+            value={totalItems.toString()} 
+            description="Across all categories" 
+            icon={Clipboard}
+        />
+        <AnalyticsCard 
+            name="Low Stock" 
+            value={lowStock.toString()} 
+            description="Items that need reordering" 
+            icon={AlertTriangle}
+            iconColor="#EAB308"
+        />
+        <AnalyticsCard 
+            name="Out of Stock" 
+            value={outOfStock.toString()} 
+            description="Items currently unavailable" 
+            icon={ShoppingCart}
+            iconColor="#EF4444"
+        />
+        <AnalyticsCard 
+            name="Total Value" 
+            value={`$${totalValue}`} 
+            description="Current inventory value" 
+            icon={DollarSign}
+            iconColor="#22C55E"
+        />
       </div>
-      <div className="flex gap-4">
-        <div className="flex-4">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex-1">
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <CardTitle>
                     <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
@@ -221,11 +245,13 @@ export default function Page() {
               </div>
             </CardHeader>
             <CardContent>
-              <ProductTable data={products} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />
+              <div className="overflow-x-auto">
+                <ProductTable data={products} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />
+              </div>
             </CardContent>
           </Card>
         </div>
-        <div className="flex-2">
+        <div className="w-full lg:w-1/3">
           <Card>
             <CardContent>
               <InsightsTabs

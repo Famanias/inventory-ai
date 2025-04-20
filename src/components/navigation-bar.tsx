@@ -22,11 +22,11 @@ const items = [
         url: "/products",
         icon: Package,
     },
-
 ]
+
 export function NavigationBar() {
     return (
-        <Sidebar>
+        <Sidebar className="w-full sm:w-64">
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>INVENTORY AI</SidebarGroupLabel>
@@ -35,9 +35,9 @@ export function NavigationBar() {
                             {items.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon />
-                                            <span>{item.title}</span>
+                                        <a href={item.url} className="flex items-center gap-2 p-2 hover:bg-accent rounded-md">
+                                            <item.icon className="w-5 h-5" />
+                                            <span className="text-sm sm:text-base">{item.title}</span>
                                         </a>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
@@ -45,7 +45,6 @@ export function NavigationBar() {
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
-
             </SidebarContent>
         </Sidebar>
     )
