@@ -192,7 +192,7 @@ export default function Page() {
         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
           Inventory Dashboard
         </h3>
-        <Button onClick={handleLogout} variant="outline">
+        <Button onClick={handleLogout} variant="destructive" className="hover:scale-110 transition-transform duration-200">
           Logout
         </Button>
       </div>

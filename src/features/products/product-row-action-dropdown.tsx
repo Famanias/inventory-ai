@@ -35,6 +35,7 @@ export default function ProductRowActionDropDown({product, onEdit, onDelete}: Pr
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => onDelete(product.ID)}
+                    className="text-red-600"
                 >
                     Delete
                 </DropdownMenuItem>

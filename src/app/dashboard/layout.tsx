@@ -12,7 +12,7 @@ export default function Layout({
                 <NavigationBar />
                 <main className="flex-col w-full">
                     <Header />
-                    {children}
+                        {children}
                 </main>
             </SidebarProvider>
         </div>
