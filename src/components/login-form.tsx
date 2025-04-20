@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Eye, EyeOff } from 'lucide-react';
 
 export function LoginForm({
   className,
@@ -21,6 +22,7 @@ export function LoginForm({
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,6 +47,10 @@ export function LoginForm({
     } catch (err: any) {
       setError(err.message);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -74,13 +80,25 @@ export function LoginForm({
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                 </div>
+                <div className="relative">
                 <Input
                   id="password"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                  {
+                    showPassword ? ( <Eye className="h-5 w-5" /> ) : ( <EyeOff className="h-5 w-5" />)
+                  }
+                </button>
+                </div>
+
                 <div className="flex items-center justify-between">
                   <a
                     href="/register"
@@ -89,7 +107,7 @@ export function LoginForm({
                     New User? Register
                   </a>
                   <a
-                    href="/forgot-password"
+                    href="/recover"
                     className="text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
