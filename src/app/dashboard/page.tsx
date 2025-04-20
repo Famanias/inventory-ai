@@ -16,6 +16,7 @@ import AddProductForm from '@/features/crud/AddProductForm';
 import EditProductForm from '@/features/crud/EditProductForm';
 import Product from '@/features/products/domains/Product';
 import InsightsTabs from '@/features/insights/InsightsTabs';
+import { Clipboard, AlertTriangle, ShoppingCart, DollarSign } from "lucide-react"
 
 interface ApiProduct {
   id: number;
@@ -197,10 +198,33 @@ export default function Page() {
         </Button>
       </div>
       <div className="grid grid-cols-4 gap-6">
-        <AnalyticsCard name="Total Items" value={totalItems.toString()} description="Across all categories" />
-        <AnalyticsCard name="Low Stock" value={lowStock.toString()} description="Items that need reordering" />
-        <AnalyticsCard name="Out of Stock" value={outOfStock.toString()} description="Items currently unavailable" />
-        <AnalyticsCard name="Total Value" value={`$${totalValue}`} description="Current inventory value" />
+        <AnalyticsCard 
+            name="Total Items" 
+            value={totalItems.toString()} 
+            description="Across all categories" 
+            icon={Clipboard}
+        />
+        <AnalyticsCard 
+            name="Low Stock" 
+            value={lowStock.toString()} 
+            description="Items that need reordering" 
+            icon={AlertTriangle}
+            iconColor="#EAB308"
+        />
+        <AnalyticsCard 
+            name="Out of Stock" 
+            value={outOfStock.toString()} 
+            description="Items currently unavailable" 
+            icon={ShoppingCart}
+            iconColor="#EF4444"
+        />
+        <AnalyticsCard 
+            name="Total Value" 
+            value={`$${totalValue}`} 
+            description="Current inventory value" 
+            icon={DollarSign}
+            iconColor="#22C55E"
+        />
       </div>
       <div className="flex gap-4">
         <div className="flex-4">
