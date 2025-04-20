@@ -188,16 +188,16 @@ export default function Page() {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
   return (
-    <div className="flex flex-col gap-4 sm:gap-6 py-4 sm:py-6 px-4 sm:px-6 md:px-8 lg:px-12">
+    <div className="flex flex-col gap-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h3 className="scroll-m-20 text-xl sm:text-2xl font-semibold tracking-tight">
+        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
           Inventory Dashboard
         </h3>
         <Button onClick={handleLogout} variant="destructive" className="hover:scale-110 transition-transform duration-200">
-          Log out
+          Logout
         </Button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <AnalyticsCard 
             name="Total Items" 
             value={totalItems.toString()} 
@@ -227,13 +227,13 @@ export default function Page() {
         />
       </div>
       <div className="flex flex-col lg:flex-row gap-4">
-        <div className="w-full lg:w-3/4">
+        <div className="flex-1">
           <Card>
             <CardHeader>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <CardTitle>
-                    <h4 className="scroll-m-20 text-lg sm:text-xl font-semibold tracking-tight">
+                    <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                       Inventory Items
                     </h4>
                   </CardTitle>
@@ -245,11 +245,13 @@ export default function Page() {
               </div>
             </CardHeader>
             <CardContent>
-              <ProductTable data={products} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />
+              <div className="overflow-x-auto">
+                <ProductTable data={products} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />
+              </div>
             </CardContent>
           </Card>
         </div>
-        <div className="w-full lg:w-1/4">
+        <div className="w-full lg:w-1/3">
           <Card>
             <CardContent>
               <InsightsTabs

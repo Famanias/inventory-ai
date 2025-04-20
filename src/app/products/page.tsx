@@ -104,16 +104,18 @@ export default function Page() {
     }
 
     return (
-        <div className="py-4 sm:py-6 px-4 sm:px-6 md:px-8 lg:px-12">
-            <h3 className="scroll-m-20 text-xl sm:text-2xl font-semibold tracking-tight mb-4 sm:mb-6">
-                Inventory Products
-            </h3>
+        <div className="flex flex-col gap-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    Inventory Products
+                </h3>
+            </div>
             <Card>
                 <CardHeader>
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div>
                             <CardTitle>
-                                <h4 className="scroll-m-20 text-lg sm:text-xl font-semibold tracking-tight">
+                                <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                                     Product List
                                 </h4>
                             </CardTitle>

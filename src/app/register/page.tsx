@@ -2,8 +2,8 @@ import { RegisterForm } from "@/components/register-form";
 
 export default function RegisterPage() {
     return (
-        <div className="flex min-h-svh w-full items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10">
-            <div className="w-full max-w-[90%] sm:max-w-md md:max-w-lg">
+        <div className="flex min-h-svh w-full items-center justify-center p-4 sm:p-6 md:p-8">
+            <div className="w-full max-w-sm">
                 <RegisterForm />
             </div>
         </div>
