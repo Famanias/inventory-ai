@@ -62,7 +62,7 @@ export const columns = (onEdit: (product: Product) => void, onDelete: (id: strin
                 </Button>
             )
         },
-        cell: ({ row }) => <div className="lowercase">{row.getValue("name")}</div>,
+        cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
     },
     {
         accessorKey: "category",
@@ -77,7 +77,7 @@ export const columns = (onEdit: (product: Product) => void, onDelete: (id: strin
                 </Button>
             )
         },
-        cell: ({ row }) => <div className="lowercase">{row.getValue("category")}</div>,
+        cell: ({ row }) => <div className="Capitalize">{row.getValue("category")}</div>,
     },
     {
         accessorKey: "quantity",
@@ -133,6 +133,42 @@ export const columns = (onEdit: (product: Product) => void, onDelete: (id: strin
             const a = parseFloat(rowA.getValue(columnId)) || 0;
             const b = parseFloat(rowB.getValue(columnId)) || 0;
             return a - b; // Ascending order
+        },
+    },
+    {
+        accessorKey: "status",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                >
+                    Status
+                    <ArrowUpDown />
+                </Button>
+            )
+        },
+        cell: ({ row }) => {
+            const status = row.getValue("quantity") as number;
+            if (status === 0) {
+                return <div className="capitalize text-red-500">Out of Stock</div>;
+            } else if (status < 10 && status !== 0) {
+                return <div className="capitalize text-yellow-500">Low Stock</div>;
+            } else {
+                return <div className="capitalize text-green-500">In Stock</div>;
+            }
+        },
+        sortingFn: (rowA, rowB) => {
+            const getStatusOrder = (quantity: number) => {
+                if (quantity === 0) return 0; // Out of Stock
+                if (quantity < 10) return 1; // Low Stock
+                return 2; // In Stock
+            };
+    
+            const statusA = getStatusOrder(rowA.getValue("quantity") as number);
+            const statusB = getStatusOrder(rowB.getValue("quantity") as number);
+    
+            return statusA - statusB; // Ascending order: Out of Stock < Low Stock < In Stock
         },
     },
     {
